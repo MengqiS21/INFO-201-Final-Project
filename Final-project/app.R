@@ -15,6 +15,8 @@ library(tidyverse)
 library(lubridate)
 library(dplyr)
 library(stringr)
+library(wordcloud2)
+library(RColorBrewer)
 
 seattle_pet_licenses <- read_delim("seattle_pet_licenses.csv")
 
@@ -35,7 +37,6 @@ draft <- species_year %>%
   pivot_longer(!year, names_to = "Species",
                values_to = "Licensed_pet"
   )
-
 
 #Trend of total pet, dog, cat licenses by Month
 cat_by_month <- seattle_pet_licenses %>% 
@@ -69,7 +70,7 @@ hello <- seattle_pet_licenses %>%
 #Licensed count of Dogs and Cat by Zipcode
 cat_zip <- seattle_pet_licenses %>% 
   filter(species == "Cat") %>% 
-  filter(zip_code >0 ) %>% 
+  filter(zip_code > 0 ) %>% 
   group_by(zip_code) %>% 
   summarize(Cats = n())
 
@@ -95,10 +96,6 @@ count_range <- range(seattle_pet_licenses_year$year)
 # Define UI for application that draws a histogram
 
 library("shiny")
-library("rbokeh")
-library("ggplot2")
-library("dplyr")
-library("plotly")
 library(tidyverse)
 library(bslib)
 library("rbokeh")
@@ -196,6 +193,28 @@ ui <- fluidPage(
                           
                         ))
              ),
+             
+             tabPanel("Name wordcloud",
+                      # Side bar layout
+                      sidebarLayout( 
+                        sidebarPanel(
+                          # Allow user to input range
+                          selectInput(
+                            "animal",
+                            label = "",
+                            choices = c("Dog", "Cat"),
+                            selected = "Dog"),
+                        ),
+                        # Main Panel3
+                        mainPanel(
+                          tabPanel(
+                            "Name wordcloud",
+                            # display Bokeh output3
+                            wordcloud2Output("wordcloud"))
+                          
+                        ) 
+                      )),
+             
              tabPanel(
                "Conclusion",
                p("Welcome to The End!"),
@@ -245,7 +264,22 @@ server <- function(input, output) {
       theme(axis.text.x = element_text(angle = 45))+
       labs(title = 'Licensed count of Dogs and Cat by Zip code', x='Zip Code', y='Number of pets') 
     ggplotly(compare)  })
+
   
+  output$wordcloud <- renderWordcloud2({
+    dog<-seattle_pet_licenses[seattle_pet_licenses$species=='Dog',]
+    cat<-seattle_pet_licenses[seattle_pet_licenses$species=='Cat',]
+    if (input$animal == "Dog") {
+      animal.names <- dog$animal_s_name
+    } else {
+      animal.names <- cat$animal_s_name
+    }
+    animal.names <- animal.names[complete.cases(animal.names)]
+    animal.names <- as.data.frame(table(animal.names))
+    wordcloud2(data = animal.names, size = 0.8, color = "random-light", 
+               backgroundColor = "white")
+  })
+
 
   output$introduction<- renderText({"For our group, we decided to work with the pet licensing data, to inform Seattleites on pet ownership trends and encouraged the people of Seattle to adopt unlicensed pets at the animal shelters."})
   
