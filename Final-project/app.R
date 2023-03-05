@@ -110,9 +110,10 @@ ui <- fluidPage(
                "Introduction",
                
                fluidPage(
-                         p("Welcome to Seattle Pet Licenses app!"),
+                         h1("Welcome to Seattle Pet Licenses app!"),
                          mainPanel(
-                           ##img(src = ".png", height = 300, width = 400, align = "center"),
+                           img(src = "https://www.heart.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg", 
+                               height = 300, width = 400, align = "center"),
                                    textOutput("introduction")
                          )
                )
@@ -177,7 +178,7 @@ ui <- fluidPage(
                       sidebarLayout(
                         sidebarPanel(
                           sliderInput("substring_zip_code", label = "Zip Code Slider",
-                                      min = min(as.numeric(zip_data$substring_zip_code)),
+                                      min = 98100,
                                       max = max(as.numeric(zip_data$substring_zip_code)),
                                       value = c(9810, 98225),
                                       sep = "",
