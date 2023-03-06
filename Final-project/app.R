@@ -110,10 +110,37 @@ ui <- fluidPage(
                "Introduction",
                
                fluidPage(
-                         h1("Welcome to Seattle Pet Licenses app!"),
-                         mainPanel(
-                           img(src = "https://www.heart.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg", 
+                 img(src = "https://www.heart.org/-/media/Healthy-Living-Images/Healthy-Lifestyle/Pets/puppy-kitten-heart.jpg", 
                                height = 300, width = 400, align = "center"),
+                         p("Welcome to Seattle Pet Licenses app!"),
+                         p(h4(strong("Creators:"))),
+                         p(tags$li("Bruce Xu)",
+                           tags$li("Mengqi Shi"),
+                           tags$li("Katherine Guo"),
+                           tags$li("Jerry Xu"))),
+                         br(),
+                         p(h4(strong("Overview:"))),
+                         p("The data set we analyzed is the pet licenses in Seattle from", strong("2005"),"to" ,  strong("2016.")),
+                         p("Our report provides different aspects of what the pet licenses shows us. We display the pet’s distribution with zip code, month, and year range."),
+                         br(),
+                         p(h4(strong("Dataset:"))),
+                         p("The dataset we working on with our Seattle Pet Licenses report is made by "),
+                         br(),
+                         p(h4(strong("Audiences:"))),
+                         p("Our target audience is anyone who is interested in pets and considering having a pet.  
+                         We believe that those pet lovers can take pleasure in discovering information about popular", strong("cat/dog"), "breeds in Seattle 
+                         and how", strong("pet-friendly"), "each area is", em("(depending on the number of pet in each zip code)"), 
+                         " Moreover, it could provide some suggestions for people who are interested in having a pet in the future,", "for example", strong("the name, species, and breed", style = "color: orange",
+                         "they should choose. If someone finds a lost pet on the street, they could easily find the pet’s license on it.")),
+                         br(),
+                         p(h4(strong("Main Focuses:"))),
+                         p("The main quesitions wer focused on :",
+                           tags$li("What is the distrubution pattern of pets in Seattle?"),
+                           tags$li("What area is the most pet friendly?"),
+                           tags$li("What are the popular pet's name for dog/cat?"),
+                           tags$li("Which area is most regulated for pets?")),
+                         
+                         mainPanel(
                                    textOutput("introduction")
                          )
                )
