@@ -245,9 +245,24 @@ ui <- fluidPage(
              
              tabPanel(
                "Conclusion",
-               p("Welcome to The End!"),
-               textOutput("conclusion"),
-               textOutput("Value") 
+                 tags$img(src = "https://www.aahneenah.com/wp-content/uploads/2012/01/5-pets-cutout.jpg", height = 400, width = 400),
+               p(h4(strong("Welcome to The End!"))),
+               p(strong("Based on our analyzation of the data we have noticed that:")),
+               p(tags$li("The number of pet licenses has drastically increased over the years, and dog's owner are much higher than cat's owner. "),
+                 br(),
+                 tags$li("By the year trends, It shows a clearly increases of the number of pet registration. This can be seen that
+                         more and more people are aware of the importance of pet registration, it is beneficial to 
+                         every person, whether have or have no pet. It provides a better chance of being returned home if lost, and it is 
+                         a prof that the pet has properly vaccinated which reassure others. "),
+                 br(),
+                 tags$li("By the month trends, it illustrates an overall view on how many people register for pet license each month. Most people have their
+                 pet license during", strong("October - December"), "There are least people in", strong("September"), 
+                 "It can help pet owners better schedule their appointments to government agencies to register their pet license and avoid the peak time.
+                         from the plot, it is better for people go to register their pet license during", strong("June or September."),
+                 br(),
+                 tags$li("From the pet name worldcloud, we found the patterns of pets name for dog/cat. 
+                         'Lucy', 'Charlie', 'Bella', 'Luna', 'Oliver' and 'Max' seem to be shared names for dogs and cats.
+                         However, 'Buddy' and 'Sadie' seem to only work for dogs.")),
              ))
 )
 
@@ -271,11 +286,13 @@ server <- function(input, output) {
   output$pet_comparisonPlot <- renderPlotly({
     pivot_data <- pivot_data %>% 
       filter(Types %in% input$user_types) %>% 
-      filter(month <= input$month[2],
-             month >= input$month[1])
+      filter(month >= input$month[1], month <= input$month[2])
     
-  hello <- ggplot(data = pivot_data, mapping= aes(x=month, y = number_of_pets, color = Types)) +
+    pivot_data$month <- round(pivot_data$month)
+    
+  hello <- ggplot(data = pivot_data, mapping= aes(x= month, y = number_of_pets, color = Types)) +
       geom_line() +
+      scale_x_continuous(limits = c(1, 12), breaks = 1:12) +
       labs(title = 'Trend of total pet, dog, cat licenses by Month', x='Month', y='Number of pets') 
     
   ggplotly(hello)
@@ -308,16 +325,12 @@ server <- function(input, output) {
                backgroundColor = "white")
   })
 
-
-  output$introduction<- renderText({"For our group, we decided to work with the pet licensing data, to inform Seattleites on pet ownership trends and encouraged the people of Seattle to adopt unlicensed pets at the animal shelters."})
-  
   output$Text_trends <- renderText({"This chart shows us how drastically the licenses of cats and dogs increased throughout 2005-2016 and the difference between cats and dogs."})
   
   output$Tab2_trends <- renderText({"This chart shows the changes in pet licensing amounts over the course of the year, broken down by months."})
   
   output$Tab3_trends <- renderText({"Looking at this data visualization, a couple of trends begin to appear."})
   
-  output$conclusion <- renderText({"One of the main take away from the three graphs is seeing how the number of people licensing their pets has drastically increased throughout the years. "})
 }
 
 # Run the application 
