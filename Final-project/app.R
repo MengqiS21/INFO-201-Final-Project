@@ -248,7 +248,7 @@ ui <- fluidPage(
              
              tabPanel(
                "Conclusion",
-                 tags$img(src = "https://www.aahneenah.com/wp-content/uploads/2012/01/5-pets-cutout.jpg", height = 400, width = 400),
+                 tags$img(src = "https://www.aahneenah.com/wp-content/uploads/2012/01/5-pets-cutout.jpg", height = 400, width = 600),
                p(h4(strong("Welcome to The End!"))),
                p(strong("Based on our analyzation of the data we have noticed that:")),
                p(tags$li("The number of pet licenses has drastically increased over the years, and dog's owner are much higher than cat's owner. "),
