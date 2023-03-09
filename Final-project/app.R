@@ -218,7 +218,7 @@ ui <- fluidPage(
                         ),
                         mainPanel(
                           tabPanel(
-                            "Zip code Tredns",
+                            "Zip code Trends",
                           textOutput("Tab3_trends"),
                           # plotly output for chart
                           plotlyOutput(outputId = "zip_comparisonPlot"))
@@ -241,6 +241,7 @@ ui <- fluidPage(
                         mainPanel(
                           tabPanel(
                             "Name wordcloud",
+                            textOutput("Tab4_trends"
                             # display Bokeh output3
                             wordcloud2Output("wordcloud"))
                           
@@ -264,9 +265,9 @@ ui <- fluidPage(
                  "It can help pet owners better schedule their appointments to government agencies to register their pet license and avoid the peak time.
                          from the plot, it is better for people go to register their pet license during", strong("June or September."),
                  br(),
-                 tags$li("From the pet name worldcloud, we found the patterns of pets name for dog/cat. 
-                         'Lucy', 'Charlie', 'Bella', 'Luna', 'Oliver' and 'Max' seem to be shared names for dogs and cats.
-                         However, 'Buddy' and 'Sadie' seem to only work for dogs.")),
+                 tags$li("From the pet name worldcloud, we found the patterns of pets name for dog/cat.",
+                         strong("'Lucy', 'Charlie', 'Bella', 'Luna', 'Oliver' and 'Max'"), " seem to be shared names for dogs and cats.
+                         However,", strong("'Buddy' and 'Sadie'"), "seem to only work for dogs.")),
              ))
 )
 
@@ -329,11 +330,17 @@ server <- function(input, output) {
                backgroundColor = "white")
   })
 
-  output$Text_trends <- renderText({"This chart shows us how drastically the licenses of cats and dogs increased throughout 2005-2016 and the difference between cats and dogs."})
+  output$Text_trends <- renderText({"This chart shows us how drastically the licenses of cats and dogs increased throughout", strong("2005-2016"), "and the difference between cats and dogs. You are able to
+see both Cat and Dog at the same time or seperate."})
   
-  output$Tab2_trends <- renderText({"This chart shows the changes in pet licensing amounts over the course of the year, broken down by months."})
+  output$Tab2_trends <- renderText({"This chart shows the changes in pet licensing amounts over the course of the year, broken down by months. It shows a clear trend of increasing and
+decreasing over different month. You are able to see whether dog, cat, total pets, or show them in the plot at the same time."})
   
-  output$Tab3_trends <- renderText({"Looking at this data visualization, a couple of trends begin to appear."})
+  output$Tab3_trends <- renderText({"Looking at this data visualization, a couple of trends begin to appear. In this plot, we are able to see the distribution of cats and dogs through different ZipCode.
+More animals mean the area is more pet-friendly"})
+  
+  output$Tab4_trends <- renderText({"Below is a wordcloud of pet's name. You are able to see the popular name for dogs and cats. This could
+provides pet lovers a big idea of what a pet name be like."})
   
 }
 
