@@ -128,6 +128,7 @@ ui <- fluidPage(
                          p("- The dataset we working on with our Seattle Pet Licenses report is provided by", strong("City of Seatle"),  ". This data table was
                            found in the City of Seattle's public database(created on January 25, 2017, last updated on January 26, 2023), refresh quarterly which frequency is high."),
                          p("- The data has a list of active/current Seattle pet licenses , including animal species, pet's name, breed and the owner's Zip Code."),
+                         p("- The dataset which can be found", tags$a(href = "https://data.seattle.gov/Community/Seattle-Pet-Licenses/jguv-t9rb", "here!")),
                          br(),
                          p(h4(strong("Audiences:"))),
                          p("- Our target audience is anyone who is interested in pets and considering having a pet.  
