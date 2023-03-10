@@ -241,7 +241,7 @@ ui <- fluidPage(
                         mainPanel(
                           tabPanel(
                             "Name wordcloud",
-                            textOutput("Tab4_trends"
+                            textOutput("Tab4_trends"),
                             # display Bokeh output3
                             wordcloud2Output("wordcloud"))
                           
