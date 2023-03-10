@@ -267,7 +267,14 @@ ui <- fluidPage(
                  br(),
                  tags$li("From the pet name worldcloud, we found the patterns of pets name for dog/cat.",
                          strong("'Lucy', 'Charlie', 'Bella', 'Luna', 'Oliver' and 'Max'"), " seem to be shared names for dogs and cats.
-                         However,", strong("'Buddy' and 'Sadie'"), "seem to only work for dogs.")),
+                         However,", strong("'Buddy' and 'Sadie'"), "seem to only work for dogs."),
+                 br(),
+                 tags$li("Since our data was found on the Seattle open data website, our data quality is reliable and unbiased. The data is reporting
+every pet in Seattle area. We didn't see any issues that will potentially harm certain population groups, we think this dataset could provide benefit ideas to those 
+people want to have pets."),
+               br(),
+               tags$li("The future idea we could do to advance this Seattle pet licenses app is spreading this app to different areas, and clear the importance of pet licenses, what
+can pet license do for us, especially those pet lovers.")),
              ))
 )
 
