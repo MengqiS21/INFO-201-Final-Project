@@ -1,6 +1,6 @@
 # INFO-201-Final-Project
 Our shiny app link:  https://mengqishi21.shinyapps.io/Final-project-pet-licenses/
-# Conclusion
+# Summary
 Based on our analyzation of the data we have noticed that:
 
 1. The number of pet licenses has drastically increased over the years, and dog's owner are much higher than cat's owner.
